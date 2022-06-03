@@ -9,6 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
+	"github.com/rkumar-bengaluru/go/rest/model"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -41,7 +42,7 @@ func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusBadRequest, "Invalid Product id")
 		return
 	}
-	p := Product{ID: id}
+	p := model.Product{ID: id}
 	if err = p.getProduct(a.DB); err != nil {
 		log.Error(err)
 		switch err {
@@ -57,7 +58,7 @@ func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) createProduct(w http.ResponseWriter, r *http.Request) {
-	var p Product
+	var p model.Product
 	log.Info("recvd::", r.Body)
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&p); err != nil {
@@ -74,7 +75,7 @@ func (a *App) createProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) updateProduct(w http.ResponseWriter, r *http.Request) {
-	var p Product
+	var p model.Product
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&p); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
@@ -108,7 +109,7 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	p := Product{ID: id}
+	p := model.Product{ID: id}
 	if err := p.deleteProduct(a.DB); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
@@ -128,7 +129,7 @@ func (a *App) getProducts(w http.ResponseWriter, r *http.Request) {
 		start = 0
 	}
 
-	products, err := getProducts(a.DB, start, count)
+	products, err := model.GetProducts(a.DB, start, count)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
