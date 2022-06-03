@@ -10,14 +10,16 @@ type RotationLogger struct {
 	zap *zap.SugaredLogger
 }
 
+var appName string
+
 func NewRotationLogger() *RotationLogger {
 	writerSyncer := getRotationLogWriter()
 	encoder := getRotationEncoder()
-
+	//appName, _ := os.Executable()
 	core := zapcore.NewCore(encoder, writerSyncer, zapcore.DebugLevel)
 	l := zap.New(core, zap.AddCaller())
-
 	defer l.Sync()
+
 	return &RotationLogger{l.Sugar()}
 }
 
