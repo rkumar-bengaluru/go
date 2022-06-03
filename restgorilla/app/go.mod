@@ -1,4 +1,4 @@
-module github.com/rkumar-bengaluru/go/restgorilla
+module github.com/rkumar-bengaluru/go/restgorilla/app
 
 go 1.18
 

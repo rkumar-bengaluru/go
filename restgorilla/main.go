@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/rkumar-bengaluru/go/restgorilla"
+	"github.com/rkumar-bengaluru/go/restgorilla/app"
 )
 
-var a = restgorilla.App{}
+var a = app.App{}
 
 func main() {
 
