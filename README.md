@@ -1,7 +1,7 @@
 # go
 
 # To run the program
-go run go run github.com/rkumar-bengaluru/go
+go run github.com/rkumar-bengaluru/go
 
 # To run the tests
 go test ./golog ./gologconsumer -v
