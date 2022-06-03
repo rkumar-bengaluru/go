@@ -9,9 +9,6 @@ import (
 	"os"
 	"strconv"
 	"testing"
-
-	log "github.com/sirupsen/logrus"
-	"rupak.com/tmp"
 )
 
 const tableCreateQuery = `CREATE TABLE IF NOT EXISTS products
