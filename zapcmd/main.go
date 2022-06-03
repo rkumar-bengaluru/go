@@ -1,15 +1,12 @@
 package main
 
 import (
-	"github.com/rkumar-bengaluru/go/zaplog"
+	"github.com/rkumar-bengaluru/go/logger"
 )
 
 func main() {
-	zaplog.Initialize()
-	zaplog.Logger.Info("debug message")
-	zaplog.InitializeSugaredLogger()
-	zaplog.SugarLogger.Info("logging to sugared logger")
-
-	zaplog.InitFileLogger()
-	zaplog.FileLogger.Info("writing log to file")
+	logger.New().Info("info")
+	logger.NewFileLogger().Info("info")
+	logger.NewJSONEncodeLogger().Info("info")
+	logger.NewRotationLogger().Info("info")
 }

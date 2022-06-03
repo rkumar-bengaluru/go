@@ -9,7 +9,8 @@ type ProductionLogger struct {
 }
 
 func New() *ProductionLogger {
-	l := zap.NewProduction()
+	l, _ := zap.NewProduction()
+	defer l.Sync()
 	return &ProductionLogger{l}
 }
 
