@@ -5,6 +5,4 @@ use (
 	./golog
 	./gologconsumer
 	./logger
-	./zapcmd
-	./zaplog
 )
