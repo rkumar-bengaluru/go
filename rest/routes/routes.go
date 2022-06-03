@@ -9,9 +9,11 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
+	"github.com/rkumar-bengaluru/go/logger"
 	"github.com/rkumar-bengaluru/go/rest/model"
-	log "github.com/sirupsen/logrus"
 )
+
+var alog = logger.NewRotationLogger()
 
 type App struct {
 	Router *mux.Router
@@ -21,15 +23,16 @@ type App struct {
 func (a *App) Initialize(user, pwd, dbname string) {
 	connectionString := fmt.Sprintf("port=49154 user=%v password=%v dbname=%v sslmode=disable",
 		user, pwd, dbname)
-	fmt.Println(connectionString)
+	alog.Info(connectionString)
 	var err error
 	a.DB, err = sql.Open("postgres", connectionString)
 	if err != nil {
-		log.Info(err)
+		fmt.Println(err)
 	}
-	fmt.Printf("DB Initialized %v", a.DB)
+
+	alog.Info(fmt.Sprintf("DB Initialized %v", a.DB))
 	a.Router = mux.NewRouter()
-	fmt.Printf("Router %v\n", a.Router)
+	alog.Info(fmt.Sprintf("Router %v\n", a.Router))
 	a.initRoutes()
 }
 
@@ -37,14 +40,14 @@ func (a *App) Initialize(user, pwd, dbname string) {
 func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
-	log.Info("getProduct::product to fetch ", id)
+	alog.Info(fmt.Sprintf("getProduct::product to fetch ", id))
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid Product id")
 		return
 	}
 	p := model.Product{ID: id}
-	if err = p.getProduct(a.DB); err != nil {
-		log.Error(err)
+	if err = p.GetProduct(a.DB); err != nil {
+		fmt.Println(err)
 		switch err {
 		case sql.ErrNoRows:
 			respondWithError(w, http.StatusNotFound, "Product not found")
@@ -59,15 +62,15 @@ func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) createProduct(w http.ResponseWriter, r *http.Request) {
 	var p model.Product
-	log.Info("recvd::", r.Body)
+	alog.Info(fmt.Sprintf("recvd::", r.Body))
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&p); err != nil {
-		log.Error(err)
+		fmt.Println(err)
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
 	defer r.Body.Close()
-	if err := p.createProduct(a.DB); err != nil {
+	if err := p.CreateProduct(a.DB); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -82,7 +85,7 @@ func (a *App) updateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-	if err := p.updateProduct(a.DB); err != nil {
+	if err := p.UpdateProduct(a.DB); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -95,7 +98,7 @@ func respondWithError(w http.ResponseWriter, code int, message string) {
 
 func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	response, _ := json.Marshal(payload)
-	log.Info("returing ->", string(response))
+	alog.Info(fmt.Sprintf("returing ->", string(response)))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
@@ -110,7 +113,7 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	p := model.Product{ID: id}
-	if err := p.deleteProduct(a.DB); err != nil {
+	if err := p.DeleteProduct(a.DB); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -118,7 +121,7 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, map[string]string{"result": "success"})
 }
 func (a *App) getProducts(w http.ResponseWriter, r *http.Request) {
-	log.Info("call to getProducts...")
+	alog.Info("call to getProducts...")
 	count, _ := strconv.Atoi(r.FormValue("count"))
 	start, _ := strconv.Atoi(r.FormValue("start"))
 
@@ -162,5 +165,5 @@ func (a *App) initRoutes() {
 }
 
 func (app App) Run(add string) {
-	log.Fatal(http.ListenAndServe(add, app.Router))
+	http.ListenAndServe(add, app.Router)
 }

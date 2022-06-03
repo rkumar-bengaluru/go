@@ -4,8 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rkumar-bengaluru/go/logger"
 )
+
+var log = logger.NewRotationLogger()
 
 type Product struct {
 	ID    int     `json:"id,omitempty"`
@@ -13,22 +15,22 @@ type Product struct {
 	Price float64 `json:"price"`
 }
 
-func (p *Product) getProduct(db *sql.DB) error {
-	log.Info("product to fetch %v\n", p.ID)
+func (p *Product) GetProduct(db *sql.DB) error {
+	log.Info(fmt.Sprintf("product to fetch %v\n", p.ID))
 	return db.QueryRow("SELECT name,price from products where id=$1", p.ID).Scan(&p.Name, &p.Price)
 }
 
-func (p *Product) updateProduct(db *sql.DB) error {
+func (p *Product) UpdateProduct(db *sql.DB) error {
 	_, err := db.Exec("UPDATE products SET name=$1, price=$2 where id=$3", p.Name, p.Price, p.ID)
 	return err
 }
 
-func (p *Product) deleteProduct(db *sql.DB) error {
+func (p *Product) DeleteProduct(db *sql.DB) error {
 	_, err := db.Exec("DELETE from products where id=$1", p.ID)
 	return err
 }
 
-func (p *Product) createProduct(db *sql.DB) error {
+func (p *Product) CreateProduct(db *sql.DB) error {
 	err := db.QueryRow(
 		"INSERT into products (name,price) VALUES($1,$2) RETURNING ID",
 		p.Name,
@@ -48,7 +50,7 @@ func GetProducts(db *sql.DB, start, count int) ([]Product, error) {
 	for rows.Next() {
 		var p Product
 		err := rows.Scan(&p.ID, &p.Name, &p.Price)
-		fmt.Printf("id %v, name %v, price %v", p.ID, p.Name, p.Price)
+		log.Info(fmt.Sprintf("id %v, name %v, price %v", p.ID, p.Name, p.Price))
 		if err != nil {
 			return nil, err
 		}

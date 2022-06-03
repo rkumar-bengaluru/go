@@ -77,7 +77,7 @@ func NewRotationLogger() *RotationLogger {
 	encoder := getRotationEncoder()
 	//appName, _ := os.Executable()
 	core := zapcore.NewCore(encoder, writerSyncer, zapcore.DebugLevel)
-	l := zap.New(core, zap.AddCaller())
+	l := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1))
 	defer l.Sync()
 	return &RotationLogger{l.Sugar()}
 }
@@ -97,7 +97,7 @@ func getRotationEncoder() zapcore.Encoder {
 
 func getRotationLogWriter() zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
-		Filename:   "./roatet.log",
+		Filename:   "./rotate.log",
 		MaxSize:    10,
 		MaxBackups: 5,
 		MaxAge:     30,
