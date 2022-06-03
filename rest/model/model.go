@@ -36,7 +36,7 @@ func (p *Product) createProduct(db *sql.DB) error {
 	return err
 }
 
-func getProducts(db *sql.DB, start, count int) ([]Product, error) {
+func GetProducts(db *sql.DB, start, count int) ([]Product, error) {
 	rows, err := db.Query("SELECT id, name, price from products LIMIT $1 OFFSET $2", count, start)
 	if err != nil {
 		return nil, err
