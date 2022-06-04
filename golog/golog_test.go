@@ -11,3 +11,10 @@ func TestInfo(t *testing.T) {
 		t.Fatal("failed in loading golog")
 	}
 }
+
+func TestInfo01(t *testing.T) {
+	l := golog.Default()
+	if l == nil {
+		t.Fatal("failed in loading golog")
+	}
+}
