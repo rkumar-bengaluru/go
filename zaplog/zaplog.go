@@ -1,33 +1,35 @@
 package zaplog
 
 import (
-	"encoding/json"
+	"os"
 
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
+// https://sunitc.dev/2019/05/27/adding-uber-go-zap-logger-to-golang-project/
 var Logger *zap.Logger
 
 func Initialize() {
-	logCfg := []byte(`{
-			"level" : "debug",
-			"encoding" : "json",
-			"outputPaths" : "stdout",
-			"errorOutputPaths" : "stderr",
-			"encoderConfig" : {
-				"messageKey" : "message",
-				"levelKey" : "level",
-				"levelEncoder" : "lowercase"
-			}
-		}`)
+	Logger, _ = zap.NewProduction()
+	defer Logger.Sync()
+}
 
-	var cfg zap.Config
-	if err := json.Unmarshal(logCfg, &cfg); err != nil {
-		panic(err)
-	}
-	logger, err := cfg.Build()
-	if err != nil {
-		panic(err)
-	}
-	defer logger.Sync()
+var SugarLogger *zap.SugaredLogger
+
+func InitializeSugaredLogger() {
+	l, _ := zap.NewProduction()
+	SugarLogger = l.Sugar()
+}
+
+var FileLogger *zap.SugaredLogger
+
+func InitFileLogger() {
+	file, _ := os.Create("./test.log")
+	writerSyncer := zapcore.AddSync(file)
+	encoder := zapcore.NewConsoleEncoder(zap.NewProductionEncoderConfig())
+
+	core := zapcore.NewCore(encoder, writerSyncer, zapcore.DebugLevel)
+	logger := zap.New(core)
+	FileLogger = logger.Sugar()
 }
