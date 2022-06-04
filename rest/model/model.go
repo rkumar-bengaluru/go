@@ -2,6 +2,7 @@ package model
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 
 	"github.com/rkumar-bengaluru/go/logger"
@@ -15,9 +16,35 @@ type Product struct {
 	Price float64 `json:"price"`
 }
 
+var allproducts = map[int]Product{
+	1: Product{1, "apple", 8.99},
+	2: Product{2, "mango", 7.99},
+	3: Product{3, "banana", 4.33},
+}
+
 func (p *Product) GetProduct(db *sql.DB) error {
 	log.Info(fmt.Sprintf("product to fetch %v\n", p.ID))
-	return db.QueryRow("SELECT name,price from products where id=$1", p.ID).Scan(&p.Name, &p.Price)
+	//return db.QueryRow("SELECT name,price from products where id=$1", p.ID).Scan(&p.Name, &p.Price)
+	for key, val := range allproducts {
+		if key == p.ID {
+			p.Name = val.Name
+			p.Price = val.Price
+			return nil
+		}
+	}
+	log.Info("fetching from in mem db")
+	return errors.New("product not found...")
+}
+
+func (p *Product) GetProductInMemory() error {
+	for key, val := range allproducts {
+		if key == p.ID {
+			p.Name = val.Name
+			p.Price = val.Price
+			break
+		}
+	}
+	return errors.New("product not found...")
 }
 
 func (p *Product) UpdateProduct(db *sql.DB) error {

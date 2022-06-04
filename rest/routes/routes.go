@@ -40,7 +40,7 @@ func (a *App) Initialize(user, pwd, dbname string) {
 func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
-	alog.Info(fmt.Sprintf("getProduct::product to fetch ", id))
+	alog.Info(fmt.Sprintf("getProduct::product to fetch %v", id))
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid Product id")
 		return
@@ -62,7 +62,7 @@ func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) createProduct(w http.ResponseWriter, r *http.Request) {
 	var p model.Product
-	alog.Info(fmt.Sprintf("recvd::", r.Body))
+	alog.Info(fmt.Sprintf("recvd::%v", r.Body))
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&p); err != nil {
 		fmt.Println(err)
@@ -98,7 +98,7 @@ func respondWithError(w http.ResponseWriter, code int, message string) {
 
 func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	response, _ := json.Marshal(payload)
-	alog.Info(fmt.Sprintf("returing ->", string(response)))
+	alog.Info(fmt.Sprintf("returing -> %v", string(response)))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
@@ -158,10 +158,6 @@ func (a *App) initRoutes() {
 	a.Router.HandleFunc("/product/{id:[0-9]+}", a.getProduct).Methods("GET")
 	a.Router.HandleFunc("/product/{id:[0-9]+}", a.updateProduct).Methods("PUT")
 	a.Router.HandleFunc("/product/{id:[0-9]+}", a.deleteProduct).Methods("DELETE")
-	fmt.Println("routes configured...")
-	//addProduct(10, a)
-	// p := Product{Name: "P1", Price: 66.77}
-	// p.createProduct(a.DB)
 }
 
 func (app App) Run(add string) {
