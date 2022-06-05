@@ -7,5 +7,7 @@ use (
 	./rest/cmd
 	./rest/model
 	./rest/routes
+	./restwgin/main
 	./restwgin/model
+	./restwgin/nroutes
 )

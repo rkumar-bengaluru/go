@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -10,20 +9,24 @@ import (
 )
 
 type App struct {
-	router *gin.Engine
+	Router *gin.Engine
 }
 
 func getProductById(c *gin.Context) {
 	id := c.Param("id")
-	m := model.Product{ID: strconv.Atoi(id)}
-	if m.Name != "" {
-		c.IndentedJSON(http.StatusNotFound, json.Marshal(`{ "msg" : "Product Not Found"`))
+	x, _ := strconv.Atoi(id)
+	m := model.Product{ID: x}
+	m.GetProduct()
+	if m.Name == "" {
+
+		c.IndentedJSON(http.StatusNotFound, gin.H{"msg": "product not found"})
+		return
 	}
 
 	c.IndentedJSON(http.StatusOK, m)
 }
 
-func (app App) InitializeRoutes() {
-	app.router = gin.Default()
-	app.router.GET("/product/{id}", getProductById)
+func (app *App) InitializeRoutes() {
+	app.Router = gin.Default()
+	app.Router.GET("/product/:id", getProductById)
 }
