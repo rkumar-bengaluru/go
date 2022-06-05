@@ -7,4 +7,5 @@ use (
 	./rest/cmd
 	./rest/model
 	./rest/routes
+	./restwgin/model
 )
