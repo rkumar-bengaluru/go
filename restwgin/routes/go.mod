@@ -2,7 +2,10 @@ module github.com/rkumar-bengaluru/go/restwgin/routes
 
 go 1.18
 
-require github.com/gin-gonic/gin v1.8.0
+require (
+	github.com/gin-gonic/gin v1.8.0
+	github.com/rkumar-bengaluru/go/restwgin/model v0.0.0-20220605131755-c1286bb39364
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
