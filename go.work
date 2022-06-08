@@ -1,8 +1,10 @@
 go 1.18
 
 use (
+	./algorithms
 	./cmd
 	./golog
+	./ioc/mux
 	./logger
 	./rest/cmd
 	./rest/model
