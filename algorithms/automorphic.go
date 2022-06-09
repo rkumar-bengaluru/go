@@ -1,6 +1,6 @@
 package algorithms
 
-// a number is automorphic if the quare of the number ends
+// a number is automorphic if the square of the number ends
 // with the same number. Example := 25*25 = 625
 func CheckIfAutomorphic(n int) bool {
 	sq := n * n

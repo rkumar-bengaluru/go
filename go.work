@@ -3,6 +3,7 @@ go 1.18
 use (
 	./algorithms
 	./cmd
+	./ecomm
 	./golog
 	./ioc/mux
 	./logger
