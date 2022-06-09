@@ -14,6 +14,16 @@ type EcommerceConfigReader interface {
 	GetBooleanKey(k string) (bool, error)
 	GetIntegerKey(k string) (int, error)
 	GetStringKey(k string) (string, error)
+	Start()
+	Stop()
+}
+
+func (c EcommConfigReader) Start() {
+	c.Logger.Info("Starting.............")
+}
+
+func (c EcommConfigReader) Stop() {
+	c.Logger.Info("Stopping.............")
 }
 
 type EcommConfigReader struct {
@@ -32,6 +42,7 @@ func (c EcommConfigReader) Initialize() error {
 
 	errDefault := <-channelDefault
 	if errDefault != nil {
+		fmt.Println(errDefault.Error())
 		return errDefault
 	}
 
@@ -60,11 +71,11 @@ func (c EcommConfigReader) GetStringKey(key string) (string, error) {
 	return "", nil
 }
 
-func NewConfigReader() *EcommConfigReader {
+func NewConfigReader(log *log.DevelopmentLogger) *EcommConfigReader {
 
 	config := &EcommConfigReader{
 		Default: viper.New(),
-		Logger:  log.NewDevelopmentLogger(),
+		Logger:  log,
 	}
 
 	return config

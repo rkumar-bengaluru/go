@@ -5,5 +5,5 @@ const (
 	ConfigName           = "config"
 	ConfigProfile        = "PROFILE"
 	ConfigProfileDefault = "local"
-	ConfigPath           = "../resources/"
+	ConfigPath           = "./resources/"
 )

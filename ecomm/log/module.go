@@ -1,9 +1,16 @@
 package log
 
 import (
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
+)
+
+var Module = fx.Options(
+	fx.Provide(
+		NewDevelopmentLogger,
+	),
 )
 
 type Logger struct {

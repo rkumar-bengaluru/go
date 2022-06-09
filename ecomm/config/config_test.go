@@ -2,11 +2,12 @@ package config
 
 import (
 	"fmt"
+	"github.com/rkumar-bengaluru/go/ecomm/log"
 	"testing"
 )
 
 func TestConfigReader(t *testing.T) {
-	config := NewConfigReader()
+	config := NewConfigReader(log.NewDevelopmentLogger())
 	if r := config.Initialize(); r != nil {
 		t.Fatalf("error initializing config reader..")
 	}
