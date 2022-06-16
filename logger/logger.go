@@ -6,6 +6,7 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+// first struct in go
 type Logger struct {
 	log *zap.Logger
 }
@@ -18,6 +19,7 @@ type DevelopmentLogger struct {
 	dev *zap.Logger
 }
 
+// define a function for Logger.
 func (logger *Logger) Info(msg string) {
 	logger.log.Info(msg)
 }
