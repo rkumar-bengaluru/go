@@ -1,6 +1,8 @@
 package console
 
 import (
+	"fmt"
+
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -62,6 +64,7 @@ func NewConsoleZapEncoderConfig() zapcore.EncoderConfig {
 }
 
 func NewConsoleLogger(setters ...Option) *ConsoleLogger {
+	fmt.Println("----------")
 	return &ConsoleLogger{NewZapConsoleLogger(setters...).Sugar()}
 }
 

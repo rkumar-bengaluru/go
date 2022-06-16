@@ -3,10 +3,8 @@ go 1.18
 use (
 	./algorithms
 	./arrayalgorithm
-	./cmd
 	./ecomm
 	./golog
-	./ioc/mux
 	./logger
 	./rest/cmd
 	./rest/model
@@ -14,5 +12,6 @@ use (
 	./restwgin/main
 	./restwgin/model
 	./restwgin/nroutes
+	./microservice
 	./hackerrank
 )

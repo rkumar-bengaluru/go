@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/rkumar-bengaluru/go/ecomm/log"
+	"github.com/rkumar-bengaluru/go/logger/console"
 	"go.uber.org/fx"
 )
 
@@ -14,7 +14,7 @@ var Module = fx.Options(
 	),
 )
 
-func newConfig(log *log.DevelopmentLogger) *EcommConfigReader {
+func newConfig(log *console.ConsoleLogger) *EcommConfigReader {
 	return NewConfigReader(log)
 }
 

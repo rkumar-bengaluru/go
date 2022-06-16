@@ -7,5 +7,7 @@ import (
 )
 
 var Module = fx.Options(
-	fx.Provide(console.Module, file.Module),
+	fx.Provide(
+		file.Module, console.Module,
+	),
 )

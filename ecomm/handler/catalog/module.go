@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rkumar-bengaluru/go/ecomm/log"
+	"github.com/rkumar-bengaluru/go/logger/console"
 	"go.uber.org/fx"
 )
 
@@ -26,7 +26,7 @@ type Product struct {
 	Name string `json:"name"`
 }
 type CatalogHandler struct {
-	log      *log.DevelopmentLogger
+	log      *console.ConsoleLogger
 	products map[string]Product
 	router   *mux.Router
 }
@@ -51,7 +51,7 @@ func respondWithJson(c *CatalogHandler, w http.ResponseWriter, code int, payload
 	w.Write(response)
 }
 
-func NewCatalogHandler(log *log.DevelopmentLogger, router *mux.Router) *CatalogHandler {
+func NewCatalogHandler(log *console.ConsoleLogger, router *mux.Router) *CatalogHandler {
 	return &CatalogHandler{log: log, products: make(map[string]Product), router: router}
 }
 
