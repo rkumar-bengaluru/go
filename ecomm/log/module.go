@@ -14,8 +14,7 @@ var Module = fx.Options(
 )
 
 func NewDevelopmentLogger() *console.ConsoleLogger {
-	l := console.NewConsoleLogger(func(z *zap.Config) {
+	return console.NewConsoleLogger(func(z *zap.Config) {
 		z.Level = zap.NewAtomicLevelAt(zapcore.DebugLevel)
 	})
-	return l
 }
