@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/rkumar-bengaluru/go/logger/console"
+	"github.com/rkumar-bengaluru/go/logger"
 	"github.com/spf13/viper"
 )
 
@@ -17,7 +17,7 @@ type EcommerceConfigReader interface {
 }
 
 type EcommConfigReader struct {
-	Logger  *console.ConsoleLogger
+	Logger  *logger.Logger
 	Default *viper.Viper
 }
 
@@ -61,7 +61,7 @@ func (c EcommConfigReader) GetStringKey(key string) (string, error) {
 	return "", nil
 }
 
-func NewConfigReader(log *console.ConsoleLogger) *EcommConfigReader {
+func NewConfigReader(log *logger.Logger) *EcommConfigReader {
 
 	config := &EcommConfigReader{
 		Default: viper.New(),

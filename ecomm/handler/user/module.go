@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rkumar-bengaluru/go/logger/console"
+	"github.com/rkumar-bengaluru/go/logger"
 	"go.uber.org/fx"
 )
 
@@ -25,7 +25,7 @@ type User struct {
 	Name string `json:"name"`
 }
 type UserHandler struct {
-	log    *console.ConsoleLogger
+	log    *logger.Logger
 	users  map[string]User
 	router *mux.Router
 }
@@ -41,7 +41,7 @@ func (c *UserHandler) GetUser(w http.ResponseWriter, r *http.Request) {
 	w.Write(re)
 }
 
-func NewUserHandler(log *console.ConsoleLogger, router *mux.Router) *UserHandler {
+func NewUserHandler(log *logger.Logger, router *mux.Router) *UserHandler {
 	return &UserHandler{log: log, users: make(map[string]User), router: router}
 }
 
