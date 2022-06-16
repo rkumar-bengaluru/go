@@ -6,7 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/rkumar-bengaluru/go/ecomm/config"
-	"github.com/rkumar-bengaluru/go/logger/console"
+	"github.com/rkumar-bengaluru/go/logger"
 	"go.uber.org/fx"
 )
 
@@ -21,7 +21,7 @@ type CatalogServerInterface interface {
 }
 
 type CatalogServer struct {
-	log    *console.ConsoleLogger
+	log    *logger.Logger
 	config *config.EcommConfigReader
 	Router *mux.Router
 }
@@ -40,7 +40,7 @@ func (c *CatalogServer) Stop() {
 
 func NewServer(
 	lc fx.Lifecycle,
-	log *console.ConsoleLogger,
+	log *logger.Logger,
 	config *config.EcommConfigReader,
 	r *mux.Router) *CatalogServer {
 	server := &CatalogServer{

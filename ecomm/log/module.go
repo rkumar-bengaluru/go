@@ -1,7 +1,7 @@
 package log
 
 import (
-	"github.com/rkumar-bengaluru/go/logger/console"
+	"github.com/rkumar-bengaluru/go/logger"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -13,8 +13,8 @@ var Module = fx.Options(
 	),
 )
 
-func NewDevelopmentLogger() *console.ConsoleLogger {
-	return console.NewConsoleLogger(func(z *zap.Config) {
+func NewDevelopmentLogger() *logger.Logger {
+	return logger.NewLogger(func(z *zap.Config) {
 		z.Level = zap.NewAtomicLevelAt(zapcore.DebugLevel)
 	})
 }
