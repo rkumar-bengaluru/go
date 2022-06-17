@@ -2,9 +2,7 @@ go 1.18
 
 use (
 	./algorithms
-	./arrayalgorithm
 	./ecomm
-	./golog
 	./logger
 	./rest/cmd
 	./rest/model
@@ -13,5 +11,4 @@ use (
 	./restwgin/model
 	./restwgin/nroutes
 	./microservice
-	./hackerrank
 )
