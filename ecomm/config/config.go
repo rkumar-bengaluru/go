@@ -14,16 +14,6 @@ type EcommerceConfigReader interface {
 	GetBooleanKey(k string) (bool, error)
 	GetIntegerKey(k string) (int, error)
 	GetStringKey(k string) (string, error)
-	Start()
-	Stop()
-}
-
-func (c EcommConfigReader) Start() {
-	c.Logger.Info("Starting.............")
-}
-
-func (c EcommConfigReader) Stop() {
-	c.Logger.Info("Stopping.............")
 }
 
 type EcommConfigReader struct {
