@@ -1,0 +1,104 @@
+2022-06-18T14:11:57.969+0530	INFO	config/module.go:65	intializing config reader...
+2022-06-18T14:11:57.971+0530	INFO	config/module.go:67	adding config path ./resources
+
+2022-06-18T14:11:57.971+0530	INFO	config/module.go:67	adding config path ../resources
+
+2022-06-18T14:11:57.971+0530	INFO	config/module.go:67	adding config path .
+
+2022-06-18T14:11:57.976+0530	INFO	server/module.go:31	starting catalog amazon server....
+2022-06-18T14:12:33.632+0530	INFO	server/module.go:53	stopping the server
+2022-06-18T17:00:32.250+0530	INFO	config/module.go:66	intializing config reader...
+2022-06-18T17:00:32.251+0530	INFO	config/module.go:68	adding config path ./resources
+
+2022-06-18T17:00:32.251+0530	INFO	config/module.go:68	adding config path ../resources
+
+2022-06-18T17:00:32.263+0530	INFO	config/module.go:68	adding config path .
+
+2022-06-18T17:00:32.264+0530	INFO	model/module.go:14	initializing catalog...
+2022-06-18T17:00:32.264+0530	INFO	model/module.go:19	initializing inmem catalog
+2022-06-18T17:00:32.264+0530	ERROR	logger/module.go:111	Ignored key without a value.	{"ignored": [0,{}]}
+2022-06-18T17:00:32.264+0530	ERROR	server/module.go:34	error starting server
+2022-06-18T17:03:43.868+0530	INFO	config/module.go:66	intializing config reader...
+2022-06-18T17:03:43.869+0530	INFO	config/module.go:68	adding config path ./resources
+
+2022-06-18T17:03:43.869+0530	INFO	config/module.go:68	adding config path ../resources
+
+2022-06-18T17:03:43.869+0530	INFO	config/module.go:68	adding config path .
+
+2022-06-18T17:04:57.535+0530	INFO	config/module.go:66	intializing config reader...
+2022-06-18T17:04:57.536+0530	INFO	config/module.go:68	adding config path ./resources
+
+2022-06-18T17:04:57.536+0530	INFO	config/module.go:68	adding config path ../resources
+
+2022-06-18T17:04:57.536+0530	INFO	config/module.go:68	adding config path .
+
+2022-06-18T17:05:37.463+0530	INFO	config/module.go:66	intializing config reader...
+2022-06-18T17:05:37.464+0530	INFO	config/module.go:68	adding config path ./resources
+
+2022-06-18T17:05:37.464+0530	INFO	config/module.go:68	adding config path ../resources
+
+2022-06-18T17:05:37.464+0530	INFO	config/module.go:68	adding config path .
+
+2022-06-18T17:05:37.464+0530	INFO	config/module.go:77	started config successfully...
+2022-06-18T17:05:37.464+0530	INFO	model/module.go:14	initializing catalog...
+2022-06-18T17:05:37.465+0530	INFO	model/module.go:19	initializing inmem catalog
+2022-06-18T17:05:37.465+0530	ERROR	logger/module.go:111	Ignored key without a value.	{"ignored": [0,{}]}
+2022-06-18T17:05:37.465+0530	ERROR	server/module.go:34	error starting server
+2022-06-18T17:08:56.209+0530	INFO	config/module.go:67	intializing config reader...
+2022-06-18T17:08:56.211+0530	INFO	config/module.go:69	adding config path ./resources
+
+2022-06-18T17:08:56.211+0530	INFO	config/module.go:69	adding config path ../resources
+
+2022-06-18T17:08:56.211+0530	INFO	config/module.go:69	adding config path .
+
+2022-06-18T17:08:56.211+0530	INFO	config/module.go:78	started config successfully...
+2022-06-18T17:08:56.211+0530	INFO	model/module.go:14	initializing catalog...
+2022-06-18T17:08:56.211+0530	INFO	model/module.go:19	initializing inmem catalog
+2022-06-18T17:08:56.212+0530	INFO	config/module.go:51	----------server:port
+2022-06-18T17:08:56.212+0530	ERROR	logger/module.go:111	Ignored key without a value.	{"ignored": [0,{}]}
+2022-06-18T17:08:56.212+0530	ERROR	server/module.go:34	error starting server
+2022-06-18T17:10:24.237+0530	INFO	config/module.go:67	intializing config reader...
+2022-06-18T17:10:24.238+0530	INFO	config/module.go:69	adding config path ./resources
+
+2022-06-18T17:10:24.238+0530	INFO	config/module.go:69	adding config path ../resources
+
+2022-06-18T17:10:24.238+0530	INFO	config/module.go:69	adding config path .
+
+2022-06-18T17:10:24.239+0530	INFO	config/module.go:78	started config successfully...
+2022-06-18T17:10:24.239+0530	INFO	model/module.go:14	initializing catalog...
+2022-06-18T17:10:24.239+0530	INFO	model/module.go:19	initializing inmem catalog
+2022-06-18T17:10:24.240+0530	INFO	config/module.go:51	is key set false
+
+2022-06-18T17:10:24.240+0530	ERROR	logger/module.go:111	Ignored key without a value.	{"ignored": [0,{}]}
+2022-06-18T17:10:24.240+0530	ERROR	server/module.go:34	error starting server
+2022-06-18T17:12:24.608+0530	INFO	config/module.go:67	intializing config reader...
+2022-06-18T17:12:24.610+0530	INFO	config/module.go:69	adding config path ./resources
+
+2022-06-18T17:12:24.610+0530	INFO	config/module.go:69	adding config path ../resources
+
+2022-06-18T17:12:24.610+0530	INFO	config/module.go:69	adding config path .
+
+2022-06-18T17:12:24.610+0530	INFO	config/module.go:78	started config successfully...
+2022-06-18T17:12:24.610+0530	INFO	model/module.go:14	initializing catalog...
+2022-06-18T17:12:24.610+0530	INFO	model/module.go:19	initializing inmem catalog
+2022-06-18T17:12:24.611+0530	INFO	config/module.go:51	is key set true
+
+2022-06-18T17:12:24.611+0530	INFO	config/module.go:53	found key server.port value 8080
+
+2022-06-18T17:12:24.611+0530	INFO	config/module.go:51	is key set false
+
+2022-06-18T17:12:24.611+0530	INFO	config/module.go:51	is key set false
+
+2022-06-18T17:12:24.611+0530	INFO	config/module.go:51	is key set false
+
+2022-06-18T17:12:24.611+0530	INFO	server/module.go:40	starting catalog amazon server at 8080....
+
+2022-06-18T17:12:31.299+0530	INFO	handler/module.go:30	recvd request for GetProduct
+2022-06-18T17:12:31.299+0530	INFO	model/inmem.go:22	query on InMemoryProductCatalog for product 1
+
+2022-06-18T17:12:31.299+0530	INFO	handler/module.go:41	sent the success response....
+2022-06-18T17:12:35.503+0530	INFO	handler/module.go:30	recvd request for GetProduct
+2022-06-18T17:12:35.503+0530	INFO	model/inmem.go:22	query on InMemoryProductCatalog for product 2
+
+2022-06-18T17:12:35.503+0530	INFO	handler/module.go:41	sent the success response....
+2022-06-18T17:12:38.207+0530	INFO	server/module.go:57	stopping the server

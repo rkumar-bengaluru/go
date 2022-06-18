@@ -28,16 +28,20 @@ func StartCatalogServer(
 	lc.Append(
 		fx.Hook{
 			OnStart: func(ctx context.Context) error {
-				log.Info("starting catalog amazon server....")
-				port := aconfig.GetIntegerKey("server:port")
-				idleTimeout := aconfig.GetIntegerKey("server:idle-timeout")
-				readTimeout := aconfig.GetIntegerKey("server:read-timeout")
-				writeTimeout := aconfig.GetIntegerKey("server:write-timeout")
 
+				port, err := aconfig.GetIntegerKey("server.port")
+				if err != nil {
+					log.Error("error starting server", err)
+					panic(err)
+				}
+				idleTimeout, _ := aconfig.GetIntegerKey("server:idle-timeout")
+				readTimeout, _ := aconfig.GetIntegerKey("server:read-timeout")
+				writeTimeout, _ := aconfig.GetIntegerKey("server:write-timeout")
+				log.Info(fmt.Sprintf("starting catalog amazon server at %v....\n", port))
 				server.Addr = fmt.Sprintf(":%d", port)
-				server.IdleTimeout = time.Duration(idleTimeout * time.Second)
-				server.ReadTimeout = time.Duration(readTimeout * time.Second)
-				server.WriteTimeout = time.Duration(writeTimeout * time.Second)
+				server.IdleTimeout = time.Duration(idleTimeout) * time.Second
+				server.ReadTimeout = time.Duration(readTimeout) * time.Second
+				server.WriteTimeout = time.Duration(writeTimeout) * time.Second
 				listener, err := net.Listen("tcp", server.Addr)
 				if err != nil {
 					log.Error("error starting server", err)
