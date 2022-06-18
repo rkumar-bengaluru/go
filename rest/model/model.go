@@ -8,7 +8,7 @@ import (
 	"github.com/rkumar-bengaluru/go/logger"
 )
 
-var log = logger.NewRotationLogger()
+var log = logger.NewLogger()
 
 type Product struct {
 	ID    int     `json:"id,omitempty"`

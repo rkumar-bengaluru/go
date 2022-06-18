@@ -13,7 +13,7 @@ import (
 	"github.com/rkumar-bengaluru/go/rest/model"
 )
 
-var alog = logger.NewRotationLogger()
+var alog = logger.NewLogger()
 
 type App struct {
 	Router *mux.Router

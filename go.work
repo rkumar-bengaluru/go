@@ -4,6 +4,8 @@ use (
 	./algorithms
 	./amazon
 	./config
+	./ecomm
 	./logger
-	./rest/cmd
+	./rest
+	./restwgin
 )
