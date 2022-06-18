@@ -4,3 +4,6 @@ server:
   idle-timeout: 120
   read-timeout: 5
   write-timeout: 10
+
+db:
+  type: "DB"
