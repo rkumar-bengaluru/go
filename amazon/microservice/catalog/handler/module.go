@@ -54,7 +54,11 @@ func (h *CatalogHandler) createProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *CatalogHandler) getAllProducts(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	all, _ := h.catalog.GetAllProducts()
+	res, _ := json.Marshal(all)
+	w.Write(res)
 }
 func registerRoutes(router *mux.Router, h *CatalogHandler) {
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

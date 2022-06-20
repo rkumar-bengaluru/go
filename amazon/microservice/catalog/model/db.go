@@ -1,41 +1,70 @@
 package model
 
 import (
+	"database/sql"
 	"errors"
+
 	"fmt"
 
+	_ "github.com/lib/pq"
 	"github.com/rkumar-bengaluru/go/logger"
 )
 
 type DBProductCatalog struct {
 	log *logger.Logger
-}
-
-var alldbproducts []Product = []Product{
-	Product{ID: 1, Name: "Apple", Description: "green apple", Price: 100},
-	Product{ID: 2, Name: "Banana", Description: "green Banana", Price: 80},
-	Product{ID: 3, Name: "Orange", Description: "green Orange", Price: 90},
-	Product{ID: 4, Name: "PineApple", Description: "green PineApple", Price: 10},
+	db  *sql.DB
 }
 
 func (c *DBProductCatalog) GetProduct(id int) (*Product, error) {
-	c.log.Info(fmt.Sprintf("query on DBProductCatalog for product %d\n", id))
-	for i := 0; i < len(alldbproducts); i++ {
-		if alldbproducts[i].ID == id {
-			return &alldbproducts[i], nil
-		}
+	p := Product{}
+	c.log.Info(fmt.Sprintf("query db for product %d\n", id))
+	rows, err := c.db.Query("select id,name,description,price from product where id=$1",
+		id)
+
+	if rows.Next() {
+		c.log.Info("reading record...")
+		rows.Scan(&p.ID, &p.Name, &p.Description, &p.Price)
 	}
-	return nil, errors.New("no product found...")
+	c.log.Info(fmt.Sprintf("product name %v\n", p.Name))
+
+	if err != nil {
+		return nil, errors.New("no product found...")
+	}
+	return &p, nil
 }
+
 func (c *DBProductCatalog) UpdateProduct(p Product) (*Product, error) {
 	return nil, errors.New("no product found...")
 }
+
 func (c *DBProductCatalog) DeleteProduct(id int) (*Product, error) {
 	return nil, errors.New("no product found...")
 }
+
 func (c *DBProductCatalog) CreateProduct(p Product) (*Product, error) {
-	return nil, errors.New("no product found...")
+	pr := Product{}
+	err := c.db.QueryRow("insert into products (name,description, price) values($1,$2,$3)",
+		p.ID, p.Description, p.Price).Scan(&pr.ID, &pr.Name, &pr.Description, &pr.Price)
+	if err != nil {
+		return nil, errors.New("error creating product...")
+	}
+	return &pr, nil
 }
+
 func (c *DBProductCatalog) GetAllProducts() ([]Product, error) {
-	return nil, errors.New("no product found...")
+	c.log.Info("getting all products")
+	rows, err := c.db.Query("select id, name, description, price from product")
+	if err != nil {
+		return nil, errors.New("no product found...")
+	}
+	c.log.Info("getting all products")
+	var all []Product
+	for rows.Next() {
+		p := Product{}
+		rows.Scan(&p.ID, &p.Name, &p.Description, &p.Price)
+		all = append(all, p)
+	}
+	c.log.Info("getting all products")
+	return all, nil
+
 }

@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 
 	"github.com/rkumar-bengaluru/go/logger"
 )
@@ -28,14 +29,25 @@ func (c *InMemoryProductCatalog) GetProduct(id int) (*Product, error) {
 	return nil, errors.New("no product found...")
 }
 func (c *InMemoryProductCatalog) UpdateProduct(p Product) (*Product, error) {
-	return nil, errors.New("no product found...")
+	var u Product
+	for i := 0; i < len(allproducts); i++ {
+		if allproducts[i].ID == p.ID {
+			p = allproducts[i]
+		}
+	}
+	u.Name = p.Name
+	u.Price = p.Price
+	u.Description = p.Description
+	return &u, nil
 }
 func (c *InMemoryProductCatalog) DeleteProduct(id int) (*Product, error) {
 	return nil, errors.New("no product found...")
 }
 func (c *InMemoryProductCatalog) CreateProduct(p Product) (*Product, error) {
-	return nil, errors.New("no product found...")
+	np := Product{ID: rand.Int(), Name: p.Name, Description: p.Description, Price: p.Price}
+	allproducts = append(allproducts, np)
+	return &np, errors.New("no product found...")
 }
 func (c *InMemoryProductCatalog) GetAllProducts() ([]Product, error) {
-	return nil, errors.New("no product found...")
+	return allproducts, nil
 }
