@@ -8,4 +8,5 @@ use (
 	./logger
 	./rest
 	./restwgin
+	./test
 )
