@@ -22,7 +22,6 @@ func FindKSmallest(n []int, k int) int {
 			if l[i] < smallest {
 				smallest = l[i]
 			}
-
 		}
 		l = removeElement(l, smallest)
 

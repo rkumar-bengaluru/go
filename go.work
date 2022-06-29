@@ -9,4 +9,5 @@ use (
 	./rest
 	./restwgin
 	./test
+	./go-routine
 )
