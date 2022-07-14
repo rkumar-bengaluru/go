@@ -8,6 +8,5 @@ use (
 	./logger
 	./rest
 	./restwgin
-	./test
 	./go-routine
 )
