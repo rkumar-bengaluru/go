@@ -9,4 +9,5 @@ use (
 	./rest
 	./restwgin
 	./go-routine
+	./algorithms/hackerrank
 )
