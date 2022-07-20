@@ -3,6 +3,7 @@ go 1.18
 use (
 	./algorithms
 	./amazon
+	./debug
 	./config
 	./ecomm
 	./logger
