@@ -1,6 +1,9 @@
 package sorting
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 func MergeSort(n []int, l, r int) []int {
 	if l < r {
@@ -10,6 +13,7 @@ func MergeSort(n []int, l, r int) []int {
 		MergeSort(n, m+1, r)
 		merge(n, l, m, r)
 	}
+	sort.Slice()
 	return n
 }
 
