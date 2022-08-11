@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func hackerrankInString(s string) string {
 	// Write your code here
@@ -22,10 +24,15 @@ func hackerrankInString(s string) string {
 	return "YES"
 }
 
+// 2 2 4 4 5 8 -- 2 2 3 6 - 1 4 - 3
+// 0 0 2 2 3 6 - 6
+// 0 0 0 0 1 4 - 4
+// 0 0 0 0 0 3 - 2
+//
+// 6 4 2 1
 func main() {
-	i := 10
-	i++
 
+	fmt.Println("111%7", 1011%7)
 	s := "hhhackkerbanker"
 	fmt.Println(hackerrankInString(s))
 
