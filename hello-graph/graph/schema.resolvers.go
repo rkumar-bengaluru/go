@@ -84,7 +84,7 @@ func (r *mutationResolver) CreatePushNotification(ctx context.Context, input mod
 		URL:    reqUrl,
 		Header: map[string][]string{
 			"Content-Type":  {"application/json"},
-			"Authorization": {" Bearer ya29.a0AVA9y1sN8u6XdoTzyiCJAO9VMxNecms9lurpxox4MOT_kp0c-KonFhIsfoYS3vymEQfPt_6kIB62T1LbbF2-z2ZAMQcmwu2dlgbPo70An_GeWbylF3wRUm3Xnn9C7jZT4kmQ_vxgzg0AaueVGsaQ7iZOwVcAaCgYKATASARESFQE65dr8Wt5njYt-V95_kESVHJgMfQ0163"},
+			"Authorization": {" Bearer ya29.a0AVA9y1vWLlLOVBwLYx_pKrL5eR9_8kcji8dLFANKgFFjMtZfMfGA1iFIv4zbe1OvZUV_Py4jTEQlNbywta5HhPiKEdGbTFWk1eBG037SnRCp6u4f1jyzMW2L7uR4rbEXhpQnzqpi1i1SOt7KHzirFdt-oPtnaCgYKATASARASFQE65dr8p1seg1Xz_qEVhf5OxCtA7w0163"},
 		},
 		Body: reqBody,
 	}
